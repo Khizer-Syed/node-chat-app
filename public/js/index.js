@@ -6,11 +6,11 @@ socket.on('connect', function() {
  //   text : 'How are you'
  // });
 
- socket.emit('createMessage', {
-   from : 'depain',
-   text : 'Fine'
+//  socket.emit('createMessage', {
+//    from : 'depain',
+//    text : 'Fine'
+//  });
  });
-});
 
 socket.on('disconnect', function() {
 console.log('Disconnected from Server');

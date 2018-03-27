@@ -22,15 +22,20 @@ io.on('connection', (socket) => {
   //   text : 'whats up',
   //   createdAt : 1335522
   // });
-  socket.emit('newMessage', {
-    from: 'khizer44',
-    text : 'wassup',
-    createdAt : new Date().getTime()
-  });
+  // socket.emit('newMessage', {
+  //   from: 'khizer44',
+  //   text : 'wassup',
+  //   createdAt : new Date().getTime()
+  // });
 
   socket.on('createMessage', (message) => {
     console.log(message);
-  })
+    io.emit('newMessage', {
+      from : message.from,
+      text : message.text,
+      createdAt : new Date().getTime()
+    });
+  });
   // socket.on('createEmail', (newEmail) => {
   //   console.log('createEmail', newEmail);
   // });
