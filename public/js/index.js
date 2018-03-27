@@ -23,3 +23,7 @@ console.log('Disconnected from Server');
 socket.on('newMessage', function(message) {
   console.log(message);
 });
+
+socket.on('userJoined', function(message) {
+  console.log(message);
+});
