@@ -6,7 +6,7 @@ const socketIO = require('socket.io');
 const http = require('http');
 
 const {generateMessage} = require('./utils/message');
-
+const {generateLocationMessage} = require('./utils/message');
 const port = process.env.PORT || 3000;
 const publicPath = path.join(__dirname,'..','public');
 
@@ -27,29 +27,10 @@ io.on('connection', (socket) => {
     callback('This is from the server');
   });
 
+  socket.on('createLocationMessage', (coords) => {
+    io.emit('newLocationMessage', generateLocationMessage('admin',coords.latitude, coords.longitude));
+  });
 
-
-  // socket.emit('newEmail', {
-  //   from : 'mike@example.com',
-  //   text : 'whats up',
-  //   createdAt : 1335522
-  // });
-  // socket.emit('newMessage', {
-  //   from: 'khizer44',
-  //   text : 'wassup',
-  //   createdAt : new Date().getTime()
-  // });
-
-
-
-  //   socket.broadcast.emit('newMessage', {
-  //     from : message.from,
-  //     text : message.text
-  //   });
-
-  // socket.on('createEmail', (newEmail) => {
-  //   console.log('createEmail', newEmail);
-  // });
   socket.on('disconnect', () => {
     console.log('Disconnected from the client');
   });
